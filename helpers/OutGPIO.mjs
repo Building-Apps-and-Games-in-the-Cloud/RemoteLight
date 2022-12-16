@@ -1,25 +1,25 @@
 import * as onoff from 'onoff'; //include onoff to interact with the GPIO
 
-class LightControl {
+class OutGPIO {
     constructor() {
     }
 
     init() {
-        console.log("Initialising light");
+        console.log("Initialising OutGPIO");
         if(onoff.Gpio.accessible){
             this.gpio = new onoff.Gpio(4, 'out'); 
         }
     }
 
     on(){
-        console.log("Light on");
+        console.log("OutGPIO on");
         if(onoff.Gpio.accessible){
             this.gpio.writeSync(1);
         }
     }
 
     pulse(){
-        console.log("Pulse light");
+        console.log("Pulse OutGPIO");
         this.on();
         setTimeout(()=>{this.off();}, 1000);
     }
@@ -28,9 +28,9 @@ class LightControl {
         if(onoff.Gpio.accessible){
             this.gpio.writeSync(0);
         }
-        console.log("Light off");
+        console.log("OutGPIO off");
     }
 }
 
-export { LightControl as LightControl };
+export { OutGPIO as OutGPIO };
 
