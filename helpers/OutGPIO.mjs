@@ -6,26 +6,20 @@ class OutGPIO {
 
     init() {
         console.log("Initialising OutGPIO");
-        if(onoff.Gpio.accessible){
-            this.gpio = new onoff.Gpio(4, 'out'); 
+        if (onoff.Gpio.accessible) {
+            this.gpio = new onoff.Gpio(4, 'out');
         }
     }
 
-    on(){
+    on() {
         console.log("OutGPIO on");
-        if(onoff.Gpio.accessible){
+        if (onoff.Gpio.accessible) {
             this.gpio.writeSync(1);
         }
     }
 
-    pulse(){
-        console.log("Pulse OutGPIO");
-        this.on();
-        setTimeout(()=>{this.off();}, 1000);
-    }
-
-    off(){
-        if(onoff.Gpio.accessible){
+    off() {
+        if (onoff.Gpio.accessible) {
             this.gpio.writeSync(0);
         }
         console.log("OutGPIO off");
