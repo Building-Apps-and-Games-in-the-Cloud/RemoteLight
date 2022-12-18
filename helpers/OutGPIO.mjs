@@ -1,28 +1,35 @@
 import * as onoff from 'onoff'; //include onoff to interact with the GPIO
 
 class OutGPIO {
-    constructor() {
+    constructor(GPIONumber) {
+        this.GPIONumber = GPIONumber;
     }
 
     init() {
-        console.log("Initialising OutGPIO");
-        if (onoff.Gpio.accessible) {
-            this.gpio = new onoff.Gpio(4, 'out');
+        console.log(`Initialising output GPIO ${this.GPIONumber}`);
+        if(onoff.Gpio.accessible){
+            this.gpio = new onoff.Gpio(this.GPIONumber, 'out'); 
         }
     }
 
-    on() {
-        console.log("OutGPIO on");
-        if (onoff.Gpio.accessible) {
+    on(){
+        console.log("On");
+        if(onoff.Gpio.accessible){
             this.gpio.writeSync(1);
         }
     }
 
-    off() {
-        if (onoff.Gpio.accessible) {
+    pulse(){
+        console.log("Pulse");
+        this.on();
+        setTimeout(()=>{this.off();}, 1000);
+    }
+
+    off(){
+        if(onoff.Gpio.accessible){
             this.gpio.writeSync(0);
         }
-        console.log("OutGPIO off");
+        console.log("Off");
     }
 }
 

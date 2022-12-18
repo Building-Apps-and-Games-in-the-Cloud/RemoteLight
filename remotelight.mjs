@@ -17,7 +17,7 @@ app.use('/index.html', index);
 app.use('/setLightState', setLightState);
 
 // Create lock control
-let lightControl = new OutGPIO();
+let lightControl = new OutGPIO(4);
 lightControl.init();
 export { lightControl as lightControl };
 
